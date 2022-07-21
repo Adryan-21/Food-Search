@@ -181,6 +181,9 @@ export default {
   background-size: 100%;
   background-position: 100% 25%;
 }
+.favorite p {
+  font-family: "Poppins", sans-serif;
+}
 
 .icon-menu {
   background-color: transparent;
