@@ -2,12 +2,17 @@
   <div
     class="container"
     :class="{
-      wrap: meals.length % 3 === 1 ? true : false,
-      wrap2: meals.length % 3 === 2 ? true : false,
+      wrap:
+        filterFood.length % 3 === 1 || filterFood.length == 1 ? true : false,
+      wrap2:
+        filterFood.length !== 1 &&
+        (filterFood.length % 3 === 2 || filterFood.length == 2)
+          ? true
+          : false,
     }"
   >
     <meal-info
-      v-for="meal in meals"
+      v-for="meal in filterFood"
       :key="meal.idMeal"
       :meal="meal"
       :activeId="activeId"
@@ -20,12 +25,27 @@
 import MealInfo from "./MealInfo.vue";
 export default {
   components: { MealInfo },
-  props: ["search"],
+  props: ["search", "filters"],
   data() {
     return {
       meals: [],
       activeId: null,
     };
+  },
+  computed: {
+    filterFood() {
+      return this.meals.filter((e) => {
+        return this.filters.area.length !== 0
+          ? this.filters.area.some((v) => e.strArea.includes(v))
+          : this.meals && this.filters.categories.length !== 0
+          ? this.filters.categories.some((v) => e.strCategory.includes(v))
+          : this.meals && this.filters.categories.length !== 0
+          ? this.filters.tags.some((v) =>
+              e.strTags !== null ? e.strTags.includes(v) : this.meals
+            )
+          : this.meals;
+      });
+    },
   },
   mounted() {
     this.loadMeals();
@@ -72,7 +92,7 @@ export default {
 }
 .wrap::after {
   content: "";
-  width: 50vw;
+  width: 47.5vw;
 }
 
 .wrap2::after {

@@ -6,7 +6,11 @@
       :style="'background-image: url(' + meal.strMealThumb + ')'"
       @click.self="activeCard"
     >
-      <div class="favorite" @click.self="activeCard">
+      <div
+        class="favorite"
+        @click.self="activeCard"
+        :class="{ isfavorite: isFavorite }"
+      >
         <font-awesome-icon
           icon="fa-regular fa-heart"
           @click.self="addToFavorite"
@@ -36,7 +40,14 @@ export default {
   data() {
     return {
       sizeInfo: 0,
+      favoriteMeals: [],
     };
+  },
+  mounted() {
+    this.favoriteMeals =
+      localStorage.favoriteMeals !== undefined
+        ? JSON.parse(localStorage.favoriteMeals)
+        : [];
   },
   computed: {
     active() {
@@ -48,7 +59,9 @@ export default {
         return null;
       }
     },
-
+    isFavorite() {
+      return this.favoriteMeals.some((v) => v.id === this.meal.idMeal);
+    },
     ingredients() {
       let ingredients = [];
       this.meal.strIngredient1 !== ""
@@ -197,14 +210,32 @@ export default {
       this.$emit("activeCard", this.activeId);
     },
     addToFavorite() {
-      alert("dodano do ulubionych: " + this.meal.strMeal);
+      let x =
+        localStorage.favoriteMeals !== undefined
+          ? JSON.parse(localStorage.favoriteMeals)
+          : [];
+      if (!x.some((v) => v.id === this.meal.idMeal)) {
+        x.push({
+          id: this.meal.idMeal,
+          name: this.meal.strMeal,
+          img: this.meal.strMealThumb,
+        });
+        localStorage.favoriteMeals = JSON.stringify(x);
+        this.favoriteMeals = x;
+      } else {
+        const index = x.findIndex((o) => {
+          return o.id === this.meal.idMeal;
+        });
+        x.splice(index, index + 1);
+        localStorage.favoriteMeals = JSON.stringify(x);
+        this.favoriteMeals = x;
+      }
     },
   },
 };
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
 .meal {
   width: 100%;
   height: 22vw;
@@ -237,6 +268,9 @@ export default {
   padding-right: 5%;
   justify-content: right;
 }
+.favorite.isfavorite {
+  color: rgb(255, 255, 141);
+}
 .favorite svg:hover {
   cursor: pointer;
 }
@@ -264,14 +298,14 @@ img {
 
 .wrapper:nth-child(3n + 2) .info,
 .wrapper:nth-child(2) .info {
-  left: -26.5vw;
+  left: -25vw;
 }
 .wrapper:nth-child(3n + 2) .info.big,
 .wrapper:nth-child(2) .info.big {
   left: -31.5vw;
 }
 .wrapper:nth-child(3n + 3) .info {
-  left: -52.75vw;
+  left: -50.5vw;
 }
 .wrapper:nth-child(3n + 3) .info.big {
   left: -63.5vw;

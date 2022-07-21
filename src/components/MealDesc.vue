@@ -35,7 +35,7 @@ export default {
 <style scoped>
 .info {
   position: relative;
-  width: 76vw;
+  width: 72.75vw;
   height: max-content;
   border: 2px solid rgb(181, 181, 181);
   border-radius: 18px;

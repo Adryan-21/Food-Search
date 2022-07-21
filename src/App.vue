@@ -1,23 +1,35 @@
 <template>
   <search-bar @search="search"></search-bar>
   <div class="content">
-    <div class="menu" v-show="OpenMenu"></div>
-    <foods-results :search="searchInput"></foods-results>
+    <filter-list
+      v-show="OpenMenu"
+      :filters="filters"
+      @removeCategories="removeCategories"
+      @removeArea="removeArea"
+      @removeTags="removeTags"
+    ></filter-list>
+    <foods-results :search="searchInput" :filters="filters"></foods-results>
   </div>
 </template>
 
 <script>
 import FoodsResults from "./components/FoodsResults.vue";
 import SearchBar from "./components/SearchBar.vue";
+import FilterList from "./components/FilterList.vue";
 import { computed } from "vue";
 
 export default {
   name: "App",
-  components: { SearchBar, FoodsResults },
+  components: { SearchBar, FoodsResults, FilterList },
   data() {
     return {
       searchInput: "",
       OpenMenu: true,
+      filters: {
+        categories: ["Vegetarian", "Food", "Desert"],
+        area: ["Stockholm", "Cracow", "Polish"],
+        tags: ["Vegetarian", "Soup", "Poland"],
+      },
     };
   },
   provide() {
@@ -33,11 +45,25 @@ export default {
     toggleMenu() {
       this.OpenMenu = !this.OpenMenu;
     },
+    removeCategories(value) {
+      const x = this.filters.categories.indexOf(value);
+      this.filters.categories.splice(x, 1);
+    },
+    removeArea(value) {
+      const x = this.filters.area.indexOf(value);
+      this.filters.area.splice(x, 1);
+    },
+    removeTags(value) {
+      const x = this.filters.tags.indexOf(value);
+      this.filters.tags.splice(x, 1);
+    },
   },
 };
 </script>
 
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+
 * {
   margin: 0;
 }
@@ -54,11 +80,6 @@ export default {
   width: 100%;
   display: flex;
   background-color: rgb(250, 250, 250);
-}
-.menu {
-  height: 100%;
-  width: 20%;
-  background-color: rgb(183, 183, 183);
 }
 </style>
 
