@@ -81,5 +81,11 @@ export default {
   display: flex;
   background-color: rgb(250, 250, 250);
 }
+
+@media (max-width: 640px) {
+  .content {
+    height: 100%;
+  }
+}
 </style>
 

@@ -66,7 +66,7 @@ export default {
 }
 .container {
   width: 90%;
-  height: 25%;
+  height: max-content;
   display: flex;
   padding-left: 10%;
   margin: 5% 0%;
@@ -75,7 +75,8 @@ export default {
 }
 .filters {
   width: 80%;
-  height: 70%;
+  height: max-content;
+  min-height: 6vw;
   border-radius: 16px;
   border: 1px solid rgb(107, 107, 107);
   margin-top: 5%;
@@ -102,10 +103,27 @@ export default {
 }
 .filter svg {
   cursor: pointer;
+  font-size: 1.25vw;
 }
 .filter p {
   margin-left: 5%;
   font-family: "Poppins", sans-serif;
   text-transform: uppercase;
+  font-size: 1.25vw;
+}
+@media (max-width: 640px) {
+  .filters {
+    border-radius: 8px;
+  }
+  .container h3 {
+    font-size: 3vw;
+  }
+  .filter {
+    margin-right: 0;
+    padding: 8%;
+  }
+  .filter p {
+    font-size: 1.8vw;
+  }
 }
 </style>

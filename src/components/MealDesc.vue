@@ -42,7 +42,7 @@ export default {
   display: flex;
 }
 .info.big {
-  width: 91vw !important;
+  width: 91vw;
 }
 
 .info iframe {
@@ -81,5 +81,39 @@ export default {
   color: rgb(150, 150, 150);
   text-transform: uppercase;
   width: 90%;
+}
+@media (max-width: 640px) {
+  .info {
+    width: 75.75vw;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+  }
+  .info iframe {
+    border-radius: 12px 12px 0 0;
+    width: 100%;
+  }
+  .info .desc {
+    width: 95%;
+  }
+  .desc h3 {
+    font-size: 3vw;
+  }
+  .desc p {
+    font-size: 2vw;
+    line-height: 2vw;
+  }
+  .desc ul {
+    grid-template-columns: 1fr 1fr 1fr;
+    font-size: 1.75vw;
+    padding-left: 2vw;
+  }
+  .desc li {
+    line-height: 2.5vw;
+    width: 85%;
+  }
+  .info.big {
+    width: 94.5vw;
+  }
 }
 </style>

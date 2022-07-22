@@ -116,6 +116,7 @@ export default {
 .search svg {
   margin: 0 2%;
   color: rgb(70, 70, 70);
+  font-size: 1.25vw;
 }
 .search input {
   background-color: transparent;
@@ -127,10 +128,11 @@ export default {
   color: rgb(70, 70, 70);
 }
 .favorites {
-  width: 70%;
+  width: 19vw;
   display: flex;
   flex-direction: column;
   color: rgb(70, 70, 70);
+  margin-left: 6vw;
 }
 .favorites.active {
   background-color: white;
@@ -140,14 +142,13 @@ export default {
 .favorites .container {
   display: flex;
   height: 100%;
-  gap: 75%;
   align-items: center;
 }
 .favorites .favorite {
   position: absolute;
-  top: 5vh;
+  top: 5%;
   background-color: white;
-  width: 16.6vw;
+  width: 17vw;
   border: 1px solid rgb(181, 181, 181);
   border-top: 0;
   padding: 1vw;
@@ -159,11 +160,14 @@ export default {
   border: 0;
   background-color: transparent;
   color: rgb(70, 70, 70);
+  font-size: 1.5vw;
 }
 
 .favorites svg {
   font-size: 1.2vw;
   color: rgb(70, 70, 70);
+  margin-left: 5%;
+  font-size: 1.5vw;
 }
 .item {
   display: flex;
@@ -173,8 +177,11 @@ export default {
   font-family: "Poppins", sans-serif;
   gap: 1vw;
   padding-left: 2vw;
+  font-size: 1vw;
+
   cursor: pointer;
 }
+
 .item .img {
   width: 35%;
   height: 75%;
@@ -183,6 +190,7 @@ export default {
 }
 .favorite p {
   font-family: "Poppins", sans-serif;
+  font-size: 1vw;
 }
 
 .icon-menu {
@@ -193,5 +201,41 @@ export default {
 }
 .icon-menu:hover {
   cursor: pointer;
+}
+
+@media (min-width: 1440px) {
+  .favorites .favorite {
+    top: 5.5%;
+  }
+}
+
+@media (max-width: 640px) {
+  .navigator {
+    height: 40px;
+  }
+  .search svg {
+    font-size: 2.5vw;
+  }
+  .search input {
+    font-size: 2.5vw;
+  }
+  .favorites button {
+    font-size: 2vw;
+  }
+  .favorites svg {
+    margin-left: 0%;
+  }
+  .favorites .favorite {
+    top: 3.5%;
+  }
+  .favorite p {
+    font-size: 1.5vw;
+  }
+  .item {
+    width: 16vw;
+  }
+  .item .img {
+    width: 25%;
+  }
 }
 </style>

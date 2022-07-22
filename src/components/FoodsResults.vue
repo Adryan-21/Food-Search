@@ -99,4 +99,18 @@ export default {
   content: "";
   width: 23.5vw;
 }
+@media (max-width: 640px) {
+  .container {
+    height: 93%;
+  }
+  .wrap::after {
+    content: "";
+    width: 36.5vw;
+  }
+
+  .wrap2::after {
+    content: "";
+    width: 23.5vw;
+  }
+}
 </style>
