@@ -1,4 +1,7 @@
-# rekrutacja
+# Rekrutacja
+
+## Demo
+https://adryan-foods.netlify.app/
 
 ## Project setup
 ```
